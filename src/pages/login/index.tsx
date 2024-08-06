@@ -88,7 +88,7 @@ const LoginScreen = () => {
           password: password,
         };
 
-        axios.post('http://localhost:8080/api/login', payload);
+        axios.post(window.location.hostname + '/api/login', payload);
         navigate('/map');
       } catch (error) {
         console.error('로그인 오류', error);

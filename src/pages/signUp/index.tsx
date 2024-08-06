@@ -127,7 +127,7 @@ const SignUp: React.FC = () => {
       console.log('Sending payload:', payload); // Debugging line
 
       await axios.post(
-        window.location.hostname + ':8080/api/users/register',
+        window.location.hostname + '/api/users/register',
         payload,
         {
           headers: {
