@@ -14,6 +14,7 @@ import {
   StepperContainer,
 } from './styles';
 import { Stepper, Step, StepLabel } from '@mui/material';
+import { getDomain } from '@/func';
 
 const steps = [
   '아이디와 비밀번호',
@@ -125,8 +126,9 @@ const SignUp: React.FC = () => {
         mbti: Object.values(formData.mbti).join(''),
       };
       console.log('Sending payload:', payload); // Debugging line
+
       await axios.post(
-        'https://kebdc63ca5156a.user-app.krampoline.com:8080/api/users/register',
+        window.location.hostname + ':8080/api/users/register',
         payload,
         {
           headers: {
