@@ -2,10 +2,9 @@
 
 ## 소개
 
-`krampoline-step2`은 krampoline의 React 예제입니다. 
+`krampoline-step2`은 krampoline의 React 예제입니다.
 이 저장소에서는 `create-react-app`를 사용하여 기본적인 React App을 만듭니다.
 [serve](https://www.npmjs.com/package/serve)를 이용하여 3000번 포트에서 서버를 열고 React 기본 파일을 제공합니다.
-
 
 쿠버네티스 구성은 다음과 같습니다.
 ![‎크램폴린 쿠버네티스 ‎001](https://github.com/EdenKim-dev/krampoline_step2_v2/assets/108042383/b0ef60b6-cde7-466b-a6da-007f48fc797b)
