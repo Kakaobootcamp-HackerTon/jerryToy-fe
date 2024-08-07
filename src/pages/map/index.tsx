@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FloatTags from '../../components/floatTags';
 import { tags } from '../../types';
 import mockUpLocations from '../../mockupData/destinations.json';
+import mockUpLocations from '../../mockupData/destinations.json';
 import markerImg from '../../assets/markerImg.png';
 import DrawerComponent from '../../components/drawer';
 
@@ -47,12 +48,9 @@ const Map: React.FC = () => {
       .then((jsonData) => setLocations(jsonData));
   }, []);
 
-  const createMarkers = () => {
-    const newMarkers = locations.map((location) => {
-      const position = new kakao.maps.LatLng(
-        location.latitude,
-        location.longitude
-      );
+  const createMarkers = useCallback(() => {
+    const newMarkers = data.map((item) => {
+      const position = new kakao.maps.LatLng(item.latitude, item.longitude);
       const markerImage = new kakao.maps.MarkerImage(
         markerImg,
         new kakao.maps.Size(24, 35)
@@ -74,18 +72,18 @@ const Map: React.FC = () => {
     });
 
     setMarkers(newMarkers);
-  }, [data, kakao.maps, map]);
+  }, [locations, kakao.maps, map]);
 
   useEffect(() => {
-    if (map && data.length > 0) {
+    if (map && locations.length > 0) {
       createMarkers();
     }
-  }, [map, data.length, createMarkers]);
+  }, [map, locations.length, createMarkers]);
 
   useEffect(() => {
     fetch('../../mockupData/destinations.json')
       .then((response) => response.json())
-      .then((jsonData) => setData(jsonData));
+      .then((jsonData) => setLocations(jsonData));
   }, []);
 
   const handleCloseDrawer = () => {
