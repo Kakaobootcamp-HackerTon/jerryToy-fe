@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import FloatTags from '../../components/floatTags';
 import { tags } from '../../types';
-import mockUpData from '../../mockupData/destinations.json';
+import mockUpLocations from '../../mockupData/destinations.json';
 import markerImg from '../../assets/markerImg.png';
 import DrawerComponent from '../../components/drawer';
 
@@ -10,7 +10,6 @@ const MapContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-
 declare global {
   interface Window {
     kakao: any;
@@ -19,11 +18,10 @@ declare global {
 
 const Map: React.FC = () => {
   const [map, setMap] = useState<any>(null);
-  const [data, setData] = useState(mockUpData);
+  const [locations, setLocations] = useState(mockUpLocations);
   const [markers, setMarkers] = useState<any[]>([]);
   const [isClicked, setIsClicked] = useState(false);
   const [destId, setDestId] = useState<number | undefined>(undefined);
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { kakao } = window;
 
@@ -36,9 +34,23 @@ const Map: React.FC = () => {
     setMap(new kakao.maps.Map(mapContainer, mapOption));
   }, [kakao.maps.LatLng, kakao.maps.Map]);
 
+  useEffect(() => {
+    if (map && locations.length > 0) {
+      createMarkers();
+    }
+  }, [map]);
+
+  useEffect(() => {
+    fetch('../../mockupData/destinations.json')
+      .then((response) => response.json())
+      .then((jsonData) => setLocations(jsonData));
+  }, []);
   const createMarkers = useCallback(() => {
-    const newMarkers = data.map((item) => {
-      const position = new kakao.maps.LatLng(item.latitude, item.longitude);
+    const newMarkers = locations.map((location) => {
+      const position = new kakao.maps.LatLng(
+        location.latitude,
+        location.longitude
+      );
       const markerImage = new kakao.maps.MarkerImage(
         markerImg,
         new kakao.maps.Size(24, 35)
@@ -46,32 +58,32 @@ const Map: React.FC = () => {
       const marker = new kakao.maps.Marker({
         map: map,
         position: position,
-        title: item.dest_name,
+        title: location.dest_name,
         image: markerImage,
         clickable: true,
       });
 
       kakao.maps.event.addListener(marker, 'click', () => {
         setIsClicked(true);
-        setDestId(item.dest_id);
+        setDestId(location.dest_id);
       });
 
       return marker;
     });
 
     setMarkers(newMarkers);
-  }, [data, kakao.maps, map]);
+  }, [locations, kakao.maps, map]);
 
   useEffect(() => {
-    if (map && data.length > 0) {
+    if (map && locations.length > 0) {
       createMarkers();
     }
-  }, [map, data.length, createMarkers]);
+  }, [map, locations.length, createMarkers]);
 
   useEffect(() => {
     fetch('../../mockupData/destinations.json')
       .then((response) => response.json())
-      .then((jsonData) => setData(jsonData));
+      .then((jsonData) => setLocations(jsonData));
   }, []);
 
   const handleCloseDrawer = () => {
@@ -81,12 +93,12 @@ const Map: React.FC = () => {
   return (
     <>
       <MapContainer id="map" />
-      <FloatTags tagList={tags} data={data} />
+      <FloatTags tagList={tags} data={locations} />
       <DrawerComponent
         tagList={tags}
         destId={destId}
         isClicked={isClicked}
-        data={data}
+        data={locations}
         onClose={handleCloseDrawer}
       />
     </>

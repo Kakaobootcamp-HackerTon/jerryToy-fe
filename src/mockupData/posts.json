@@ -3,7 +3,7 @@
     "postId": 1,
     "user": {
       "userId": 1,
-      "nickname": "Derek",
+      "nickname": "Tony",
       "age": 25,
       "mbti": "INTJ",
       "gender": "M",
@@ -13,22 +13,21 @@
       "degree": 0.0
     },
     "dest": {
-      "destId": 1,
-      "destName": "한라산",
+      "destId": 524,
+      "destName": "우도 봉수대",
       "label": "관광지",
-      "address": "제주특별자치도 서귀포시",
-      "roadaddress": "제주특별자치도 서귀포시 1100로",
-      "introduction": "높은 산",
-      "latitude": 33.3617,
-      "longitude": 126.5292,
-      "tagList": ["등산", "산"]
+      "address": "제주특별자치도 제주시",
+      "roadaddress": "제주특별자치도 제주시 우도면 연평리 798",
+      "latitude": 33.524593,
+      "longitude": 126.952644,
+      "tagList": ["우도"]
     },
-    "title": "한라산 등산",
-    "content": "한라산에 등산 가요",
+    "title": "우도 가실 분 구합니다",
+    "content": "우도 봉수대 들어보셨나요?",
     "postDate": "2022-01-01",
-    "tag": "등산",
-    "likes": 100,
-    "views": 200,
+    "tag": "우도",
+    "likes": 4,
+    "views": 10,
     "people": 5
   },
   {
@@ -45,22 +44,21 @@
       "degree": 0.0
     },
     "dest": {
-      "destId": 2,
-      "destName": "성산일출봉",
+      "destId": 294,
+      "destName": "육시우영",
       "label": "관광지",
-      "address": "제주특별자치도 서귀포시 성산읍",
-      "roadaddress": "제주특별자치도 서귀포시 성산읍 일출로",
-      "introduction": "아름다운 일출",
-      "latitude": 33.4581,
-      "longitude": 126.9425,
-      "tagList": ["일출", "산"]
+      "address": "제주특별자치도 제주시 애월읍",
+      "roadaddress": "제주특별자치도 제주시 애월읍 하가리",
+      "latitude": 33.45789,
+      "longitude": 126.35208,
+      "tagList": ["육시우영"]
     },
-    "title": "성산일출봉에서 일출 보기",
-    "content": "성산일출봉에서 일출을 봅시다",
+    "title": "육시우영",
+    "content": "유유유유유융ㅇ귝육육",
     "postDate": "2022-01-02",
     "tag": "일출",
-    "likes": 200,
-    "views": 300,
+    "likes": 1,
+    "views": 24,
     "people": 10
   },
   {
@@ -77,7 +75,7 @@
       "degree": 0.0
     },
     "dest": {
-      "destId": 3,
+      "destId": 451,
       "destName": "한밭식당",
       "label": "음식점",
       "address": "제주특별자치도 제주시",
@@ -131,7 +129,7 @@
     "postId": 5,
     "user": {
       "userId": 5,
-      "nickname": "Tony",
+      "nickname": "Derek",
       "age": 27,
       "mbti": "INFJ",
       "gender": "M",

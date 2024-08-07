@@ -29,7 +29,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
   destId,
   onClose,
 }) => {
-  const [posts, setPosts] = useState<Post[]>(data);
+  const [posts, setPosts] = useState<Post[]>(mockUpPosts);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [tags, setTags] = useState(tagList);
   const baseUrl = new URL(window.location.href).origin;
@@ -50,12 +50,13 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
 
   useEffect(() => {
     if (destId !== undefined) {
-      const filteredPosts = data.filter(
+      const filteredPosts = posts.filter(
         (post: any) => post.dest.destId === destId
       );
+      console.log('filteredPosts:', filteredPosts);
       setPosts(filteredPosts);
     }
-  }, [destId, data]);
+  }, [destId]);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -121,10 +122,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
             : renderTags(selectedTags))}
       </CategoryList>
       <Divider />
-      <ListComponent
-        posts={mockUpPosts as Post[]}
-        onPostClick={() => navigate('/post')}
-      />
+      <ListComponent posts={posts} onPostClick={() => navigate('/post')} />
       <Divider />
       <Footer />
     </div>

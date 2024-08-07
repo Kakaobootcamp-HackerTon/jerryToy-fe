@@ -13,6 +13,8 @@ import {
 } from '@mui/material';
 import { Tag } from '../../types';
 import mockUpDestinations from '../../mockupData/destinations.json';
+import { CustomTextField } from './styles';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const tags: Tag[] = [
   { tag: '숙박', name: '숙박' },
@@ -63,10 +65,18 @@ const PostCreatePage: React.FC = () => {
 
   return (
     <Container maxWidth="sm" sx={{ paddingTop: '100px' }}>
+      <ChevronLeftIcon
+        style={{
+          position: 'absolute',
+          top: '20px',
+          cursor: 'pointer',
+        }}
+        onClick={() => window.history.back()}
+      />
       <Typography variant="h4" component="h1" gutterBottom>
         게시글 작성
       </Typography>
-      <TextField
+      <CustomTextField
         label="제목"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -84,7 +94,7 @@ const PostCreatePage: React.FC = () => {
         </Select>
       </FormControl>
       <FormControl fullWidth margin="normal">
-        <InputLabel>위치 검색 (제주 내)</InputLabel>
+        <InputLabel>장소 선택</InputLabel>
         <Select
           value={destName}
           onChange={(e) => {
@@ -104,7 +114,7 @@ const PostCreatePage: React.FC = () => {
           ))}
         </Select>
       </FormControl>
-      <TextField
+      <CustomTextField
         label="글"
         value={content}
         onChange={(e) => setContent(e.target.value)}
@@ -119,6 +129,9 @@ const PostCreatePage: React.FC = () => {
           color="primary"
           onClick={handleSubmit}
           fullWidth
+          style={{
+            backgroundColor: 'var(--active-button-color)',
+          }}
         >
           작성 완료
         </Button>
