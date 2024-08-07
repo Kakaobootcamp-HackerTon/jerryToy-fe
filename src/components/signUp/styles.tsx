@@ -10,8 +10,6 @@ export const Container = styled.div`
 `;
 
 export const CustomTextField = styled(TextField)({
-  height: '50px',
-
   '& .MuiInput-underline:after': {
     borderBottomColor: 'var(--active-button-color)',
   },
