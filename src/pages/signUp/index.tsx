@@ -127,16 +127,12 @@ const SignUp: React.FC = () => {
       };
       console.log('Sending payload:', payload); // Debugging line
 
-      await axios.post(
-        `https://kebdc63ca5156a.user-app.krampoline.com/api/users/register`,
-        payload,
-        {
-          headers: {
-            Credentials: 'include',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      await axios.post(`${baseUrl}/api/users/register`, payload, {
+        headers: {
+          Credentials: 'include',
+          'Content-Type': 'application/json',
+        },
+      });
       navigate('/signUpDone');
     } catch (error) {
       console.error('회원가입 오류:', error);
