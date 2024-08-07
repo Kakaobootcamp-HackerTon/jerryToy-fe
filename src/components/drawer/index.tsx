@@ -29,7 +29,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
   destId,
   onClose,
 }) => {
-  const [posts, setPosts] = useState<Post[]>(data);
+  const [posts, setPosts] = useState<Post[]>(mockUpPosts);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [tags, setTags] = useState(tagList);
   const baseUrl = new URL(window.location.href).origin;
@@ -50,7 +50,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
 
   useEffect(() => {
     if (destId !== undefined) {
-      const filteredPosts = data.filter(
+      const filteredPosts = posts.filter(
         (post: any) => post.dest.destId === destId
       );
       setPosts(filteredPosts);

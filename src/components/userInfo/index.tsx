@@ -25,7 +25,7 @@ import {
 } from '@mui/icons-material';
 import { UserInfoContainer, BackgroundImage, CardContainer } from './styles';
 import cover from '../../assets/background.jpg';
-import axios from 'axios';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 interface UserInfoType {
   userId: number;
@@ -39,23 +39,20 @@ interface UserInfoType {
   degree: number;
 }
 
-const UserInfo: React.FC<{ userId: string }> = ({ userId }) => {
-  const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
+const UserInfoExample = {
+  userId: 1,
+  nickname: 'Tony',
+  age: 25,
+  mbti: 'INTJ',
+  gender: 'M',
+  regDate: '2022-01-01',
+  recent_match: '2023-01-01',
+  count: 10,
+  degree: 36.5,
+};
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/user/${userId}`
-        );
-        setUserInfo(response.data);
-      } catch (error) {
-        console.error('Failed to fetch user information:', error);
-      }
-    };
-
-    fetchUserInfo();
-  }, [userId]);
+const UserInfo: React.FC<{ userId: number }> = ({ userId }) => {
+  const [userInfo, setUserInfo] = useState(UserInfoExample);
 
   if (!userInfo) {
     return (
@@ -67,7 +64,14 @@ const UserInfo: React.FC<{ userId: string }> = ({ userId }) => {
 
   return (
     <UserInfoContainer>
-      <BackgroundImage src={cover} alt="background" />
+      <ChevronLeftIcon
+        style={{
+          position: 'absolute',
+          top: '20px',
+          cursor: 'pointer',
+        }}
+        onClick={() => window.history.back()}
+      />
       <CardContainer>
         <Card
           sx={{
@@ -166,7 +170,7 @@ const UserInfo: React.FC<{ userId: string }> = ({ userId }) => {
                 max={100}
                 valueLabelDisplay="auto"
                 aria-labelledby="temperature-slider"
-                sx={{ color: '#ff5722' }}
+                sx={{ color: 'var(--active-button-color' }}
               />
             </Box>
           </CardContent>

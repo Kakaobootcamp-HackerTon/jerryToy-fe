@@ -17,7 +17,7 @@ import {
   Cake,
   EmojiPeople,
 } from '@mui/icons-material';
-import axios from 'axios';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import {
   PostContainer,
   UserInfo,
@@ -37,7 +37,7 @@ const mockPost: Post = {
   postId: 1,
   user: {
     userId: 1,
-    nickname: 'Derek',
+    nickname: 'Tony',
     age: 25,
     mbti: 'INTJ',
     gender: 'M',
@@ -47,21 +47,21 @@ const mockPost: Post = {
     degree: 0.0,
   },
   dest: {
-    destId: 1,
-    destName: '한라산',
+    destId: 583,
+    destName: '디어펫',
     label: '관광지',
-    address: '제주특별자치도 서귀포시',
-    roadaddress: '제주특별자치도 서귀포시 1100로',
+    address: '제주특별자치도 제주시',
+    roadaddress: '제주특별자치도 제주시 연동 1531-7',
     latitude: 33.3617,
     longitude: 126.5292,
-    tagList: ['등산', '산'],
+    tagList: ['애완동물'],
   },
-  title: '한라산 등산',
-  content: '한라산에 등산 가요',
+  title: '디어펫 가실 분 구합니다',
+  content: '디어펫이라고 들어보셨나요?',
   postDate: '2022-01-01',
-  tag: '등산',
-  likes: 100,
-  views: 200,
+  tag: '강아지놀이터',
+  likes: 4,
+  views: 10,
   people: 5,
 };
 
@@ -132,13 +132,27 @@ const PostDetail: React.FC = () => {
 
   return (
     <Container maxWidth="md" sx={{ paddingTop: '30px' }}>
+      <ChevronLeftIcon
+        style={{
+          position: 'absolute',
+          top: '20px',
+          cursor: 'pointer',
+        }}
+        onClick={() => window.history.back()}
+      />
       <PostContainer>
         <Typography variant="h4" component="div" gutterBottom>
           {post.title}
         </Typography>
 
         <UserInfo>
-          <Box display="flex" alignItems="center" sx={{ gap: 2 }}>
+          <Box
+            display="flex"
+            alignItems="center"
+            sx={{ gap: 2 }}
+            onClick={() => navigate('/userInfo')}
+            style={{ cursor: 'pointer' }}
+          >
             <Person sx={{ color: 'orange' }} />
             <Typography variant="subtitle1" component="div">
               {post.user.nickname}
