@@ -47,6 +47,18 @@ const Map: React.FC = () => {
       .then((jsonData) => setLocations(jsonData));
   }, []);
 
+  useEffect(() => {
+    if (map && locations.length > 0) {
+      createMarkers();
+    }
+  }, [map]);
+
+  useEffect(() => {
+    fetch('../../mockupData/destinations.json')
+      .then((response) => response.json())
+      .then((jsonData) => setLocations(jsonData));
+  }, []);
+
   const createMarkers = () => {
     const newMarkers = locations.map((location) => {
       const position = new kakao.maps.LatLng(
@@ -74,18 +86,18 @@ const Map: React.FC = () => {
     });
 
     setMarkers(newMarkers);
-  }, [data, kakao.maps, map]);
+  }, [locations, kakao.maps, map]);
 
   useEffect(() => {
-    if (map && data.length > 0) {
+    if (map && locations.length > 0) {
       createMarkers();
     }
-  }, [map, data.length, createMarkers]);
+  }, [map, locations.length, createMarkers]);
 
   useEffect(() => {
     fetch('../../mockupData/destinations.json')
       .then((response) => response.json())
-      .then((jsonData) => setData(jsonData));
+      .then((jsonData) => setLocations(jsonData));
   }, []);
 
   const handleCloseDrawer = () => {
